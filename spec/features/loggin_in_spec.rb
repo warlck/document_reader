@@ -29,9 +29,16 @@ feature "User logging in" do
         expect(page).to have_content 'Login'
     end
 
-
-
-
+    scenario "successfully, provided valid authentication values and remember me" do
+        visit login_path
+        expect(page).to have_content "Remember me"
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        check 'Remember me'
+        click_button 'Log In'
+        expect(current_path).to eq root_path
+        expect(page).to have_content user.name 
+    end
 
 
 end
