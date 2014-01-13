@@ -1,5 +1,11 @@
 require 'spec_helper'
 
-describe Documents do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Document do
+  it { should belong_to :library}
+
+
+
+  describe "description" do
+  	
+  end
 end
