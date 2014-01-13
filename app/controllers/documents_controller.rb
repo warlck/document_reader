@@ -20,7 +20,7 @@ class DocumentsController < ApplicationController
 	def get
 		document = current_user.documents.find_by_id(params[:id])
 		if document 
-		    send_file document.uploaded_file.path, :type => document.uploaded_file_content_type 
+		    send_file document.uploaded_file.path, :type => document.uploaded_file_content_type, :x_sendfile=>true 
 		else
 		    flash[:error] = "Don't have access to this file!"
 		    redirect_to root_url
