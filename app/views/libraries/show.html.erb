@@ -5,6 +5,7 @@
   <% @documents.each do |document| %> 
     <tr class = "document"> 
       <td><%= link_to document.uploaded_file_file_name, document.uploaded_file.url %></td> 
+      <td><%= link_to 'Download', download_path(document.id) %></td>
       <td><%= link_to "Destroy", document, :confirm => 'Are you sure?', :method => :delete %></td> 
     </tr> 
   <% end %> 
