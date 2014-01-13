@@ -1,0 +1,36 @@
+<div class="col-sm-offset-2">
+  <h1>Update Password</h1>
+</div>     
+
+
+<div class="login-form">
+<%= form_for @user  , url: password_reset_path(params[:id]) , class: "form-horizontal", role: 'form' do |f|%>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field form-group">
+    <%= f.label :password, nil, :class =>' col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+      </div>
+    </div>
+        <div class="field form-group">
+    <%= f.label :password_confirmation, nil, :class =>' col-sm-2 control-label' %>
+      <div class="col-sm-4">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation' %>
+      </div>
+    </div>
+    <div class="actions form-group">
+      <div class="col-sm-offset-2 col-sm-10 ">
+        <%= f.submit "Update Password" , class: 'btn btn-default'%>
+      </div>
+    </div>
+<% end %>
+</div>
