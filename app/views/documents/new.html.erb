@@ -1,0 +1,18 @@
+<h2>Upload Document</h2>
+<%= form_for @document, :html => {:multipart => true} do |f| %> 
+   <% if @document.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @document.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p> 
+        <%= f.label :uploaded_file, "File" %><br /> 
+        <%= f.file_field :uploaded_file %> 
+    </p> 
+  <p><%= f.submit "Upload" %></p> 
+<% end %> 

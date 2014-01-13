@@ -1,0 +1,13 @@
+<h2>Uploaded Documents</h2>
+
+
+  <table> 
+  <tr> 
+    <th>Uploaded Files</th> 
+  </tr> 
+  <% @documents.each  do |document|%>
+    <tr  class = "document"> 
+      <td><%= link_to document.uploaded_file_file_name, document.uploaded_file.url %>
+      </td> 
+    <% end %> 
+</table> 

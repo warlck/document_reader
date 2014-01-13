@@ -46,6 +46,12 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include Paperclip::Shoulda::Matchers
+
+
+  config.after(:all) do
+      `rm -rf #{"#{Rails.root}/public/system"}`
+  end
+
 end
 
  

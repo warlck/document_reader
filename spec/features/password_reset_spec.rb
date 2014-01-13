@@ -47,7 +47,7 @@ feature 'Password Reset' do
 		expect(current_path).to eq new_password_reset_path
 	end
 
-	scenario "raises record not found error when password reset token is invalid" do
+	scenario"raises record not found error when password reset token is invalid" do
 		expect { visit edit_password_reset_path("invalid")}.
 		to raise_exception(ActiveRecord::RecordNotFound)
 	end
