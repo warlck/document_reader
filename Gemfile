@@ -9,6 +9,8 @@ gem 'pg'
 gem 'high_voltage'
 gem 'paperclip'
 gem 'aws-sdk'
+gem "bootstrap-sass"
+
 
 
 
