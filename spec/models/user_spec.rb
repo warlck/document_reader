@@ -71,8 +71,15 @@ describe User do
 
   describe "library association" do
     let(:user) { create(:user)}
-    it "has library associated" do
+    it "provides library associated" do
        expect(user).to have_one(:library).dependent(:destroy)
     end
+  end
+
+  describe "documents association" do
+     let(:user) { create(:user) }
+     it "provides associated documents via library" do
+        expect(user).to have_many(:documents).through(:library)
+     end
   end
 end
