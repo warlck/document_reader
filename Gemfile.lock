@@ -180,6 +180,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0.0)
       websocket (~> 1.0.4)
+    shoulda-matchers (2.2.0)
+      activesupport (>= 3.0.0)
     simplecov (0.6.4)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -228,6 +230,7 @@ DEPENDENCIES
   rb-inotify
   rspec-rails (= 2.11.0)
   sass-rails (~> 3.2.3)
+  shoulda-matchers
   simplecov
   spork
   uglifier (>= 1.0.3)

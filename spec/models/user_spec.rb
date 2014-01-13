@@ -1,9 +1,32 @@
 require 'spec_helper'
 
 describe User do
-  
-  
 
+  describe "instance" do
+      let(:user) { build_stubbed(:user)}
+      subject { user }
+
+      it { should respond_to(:email)}
+      it { should respond_to(:password)}
+      it { should respond_to(:password_digest)}
+      it { should respond_to(:name) }
+    end
+
+    it "is invalid without email" do
+       user = build_stubbed(:user, email: nil)
+       expect(user).to be_invalid
+    end
+
+    it "has unique email" do
+       create(:user, email: "foo@bar.com")
+       user = build(:user, email: "foo@bar.com")
+       expect(user).to have(1).errors_on(:email) 
+    end
+
+    it "is invalid without name" do
+       user = build_stubbed(:user, name: nil)
+       expect(user).to be_invalid
+    end
 
   describe "authentication token" do
   	 let(:user) { create(:user)}
@@ -44,5 +67,12 @@ describe User do
   	 	expect(last_email.to).to include user.email
   	 end
 
+  end
+
+  describe "library association" do
+    let(:user) { create(:user)}
+    it "has library associated" do
+       expect(user).to have_one(:library).dependent(:destroy)
+    end
   end
 end
