@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140113083248) do
+ActiveRecord::Schema.define(:version => 20140113124323) do
 
   create_table "documents", :force => true do |t|
     t.integer  "library_id"
@@ -21,9 +21,21 @@ ActiveRecord::Schema.define(:version => 20140113083248) do
     t.string   "uploaded_file_content_type"
     t.integer  "uploaded_file_file_size"
     t.datetime "uploaded_file_updated_at"
+    t.integer  "folder_id"
   end
 
+  add_index "documents", ["folder_id"], :name => "index_documents_on_folder_id"
   add_index "documents", ["library_id"], :name => "index_documents_on_library_id"
+
+  create_table "folders", :force => true do |t|
+    t.integer  "library_id"
+    t.integer  "parent_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "folders", ["library_id"], :name => "index_folders_on_library_id"
 
   create_table "libraries", :force => true do |t|
     t.integer  "user_id"

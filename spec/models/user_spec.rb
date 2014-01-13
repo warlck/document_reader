@@ -82,4 +82,11 @@ describe User do
         expect(user).to have_many(:documents).through(:library)
      end
   end
+
+  describe "folders association" do
+     let(:user) { create(:user)}
+     it "provides associated folders via library" do
+        expect(user).to have_many(:folders).through(:library)
+     end
+  end
 end

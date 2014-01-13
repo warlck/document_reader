@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_one :library, dependent: :destroy
   has_many :documents, through: :library
+  has_many :folders, through: :library 
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
