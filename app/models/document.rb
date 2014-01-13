@@ -7,4 +7,10 @@ class Document < ActiveRecord::Base
   validates_attachment :uploaded_file, :presence => true,
   :content_type => { :content_type => "application/pdf" },
   :size => { :in => 0..10.megabytes }
+
+
+
+  def file_name
+  	 self.uploaded_file_file_name
+  end
 end

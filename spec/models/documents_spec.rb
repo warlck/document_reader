@@ -6,14 +6,26 @@ describe Document do
 
 
 
+
   describe "paperlcip attachment" do
   	subject { Document.create}
 
-  	  it { should have_attached_file(:uploaded_file) }
+  	it { should have_attached_file(:uploaded_file) }
 	  it { should validate_attachment_presence(:uploaded_file) }
 	  it { should validate_attachment_content_type(:uploaded_file).
 	                allowing('application/pdf') }
 	  it { should validate_attachment_size(:uploaded_file).
 	                less_than(10.megabytes) }
   end
+
+  describe "#file_name" do
+     it "returns the file name of attachment" do
+        document = create(:document, :uploaded_file_file_name => "newname")
+        expect(document.file_name).to eq "newname"
+     end
+  end
+
+  
+
+
 end
