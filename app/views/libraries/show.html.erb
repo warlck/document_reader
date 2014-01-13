@@ -1,0 +1,12 @@
+<table> 
+  <tr> 
+    <th>Uploaded Files</th> 
+  </tr> 
+  <% @documents.each do |document| %> 
+    <tr> 
+      <td><%= link_to document.uploaded_file_file_name, document.uploaded_file.url %></td> 
+      <td><%= link_to "Destroy", document, :confirm => 'Are you sure?', :method => :delete %></td> 
+    </tr> 
+  <% end %> 
+</table> 
+<p><%= link_to "New document", new_document_path %></p> 

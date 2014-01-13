@@ -74,6 +74,10 @@ describe User do
     it "provides library associated" do
        expect(user).to have_one(:library).dependent(:destroy)
     end
+
+    it "succesfully used to create associated library upon user creation" do
+       expect(user.library).not_to be_nil
+    end
   end
 
   describe "documents association" do

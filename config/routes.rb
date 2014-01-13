@@ -9,5 +9,6 @@ DocumentReader::Application.routes.draw do
  resources :sessions, only: [:new, :create, :destroy]
  resources :password_resets, only: [:new, :create, :edit, :update]
  resources :documents, only: [:index,:new, :create]
+ resources :libraries, only: [:show]
 end
 	

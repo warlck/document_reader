@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   before_create { generate_token(:auth_token)}
+  after_create { self.library = Library.create }
   
   def send_password_reset
   	generate_token(:password_reset_token)
