@@ -7,6 +7,7 @@ DocumentReader::Application.routes.draw do
  get 'documents/get/:id', to: "documents#get", as: 'download' 
  get 'browse/:folder_id', to: "libraries#browse", as: "browse"
  get 'browse/:folder_id/new_folder', to: "folders#new", as: "new_sub_folder"
+ get 'browse/:folder_id/new_file', to: "documents#new", as: "new_sub_file"
  
  resources :users, only: [:new, :create]
  resources :sessions, only: [:new, :create, :destroy]

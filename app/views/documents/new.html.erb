@@ -17,9 +17,18 @@
         <%= f.file_field :uploaded_file, class: 'form-control' %>
       </div>
     </div>
+    <%= f.hidden_field :folder_id %>
     <div class="actions form-group">
       <div class="col-sm-offset-2 col-sm-10 ">
         <%= f.submit "Upload", class: 'btn btn-default'%>
       </div>
     </div>
 <% end %>
+
+<p> 
+<% if @document.folder %> 
+   <%= link_to "Back to '#{@document.folder.name}' Folder", browse_path(@document.folder) %> 
+<% else %> 
+   <%= link_to "Back", root_url %> 
+<% end %> 
+</p> 

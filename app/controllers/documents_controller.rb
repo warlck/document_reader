@@ -1,16 +1,21 @@
 class DocumentsController < ApplicationController 
 
 	def new
-		@document = Document.new
+		@document = current_user.library.documents.new
+		if params[:folder_id]
+			@current_folder = current_user.folders.find(params[:folder_id])
+			@document.folder_id = @current_folder.id
+		end
 	end
 
 	def create
-		@library = current_user.library
-		@document = Document.new
-		@document.update_attributes(params[:document])
+		@document = current_user.library.documents.new(params[:document])
 		if @document.save
-			@library.documents << @document
-			redirect_to library_path @library
+			if @document.folder
+				redirect_to browse_path(@document.folder)
+			else
+				redirect_to root_url
+			end
 		else
 			render :new
 		end

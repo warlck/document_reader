@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  attr_accessible :uploaded_file
+  attr_accessible :uploaded_file, :folder_id
   belongs_to :library
   belongs_to :folder
 

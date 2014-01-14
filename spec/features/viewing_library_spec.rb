@@ -22,7 +22,6 @@ feature 'User viewing his library' do
 		expect(page).to have_content document.file_name
 		expect(page).to have_css '.file_size', text: '1 KB'
 		expect(page).to have_link "Upload", href: new_document_path
-
 	end
 
 	scenario 'can see folders listed' do	
@@ -40,7 +39,8 @@ feature 'User viewing his library' do
 		click_link folder.name
 		expect(current_path).to eq browse_path(folder.id)
 		expect(page).to have_content new_document.file_name
-		expect(page).to have_link "New Folder", href: new_sub_folder_path(folder)
+		expect(page).to have_link "Upload", href: new_sub_file_path(folder)
+		expect(page).to have_link "New Folder",	 href: new_sub_folder_path(folder)
 		visit library_path(library)
 		expect(page).not_to have_content new_document.file_name
 	end
@@ -55,6 +55,17 @@ feature 'User viewing his library' do
 		click_button "Create Folder"
 		expect(folder.children).not_to be_empty
 		expect(current_path).to eq browse_path(folder)
+	end
+
+	scenario "can create file inside a folder" do
+		log_in user
+		visit browse_path(folder)
+		click_link "Upload"
+		expect(current_path).to eq new_sub_file_path(folder)
+		attach_file "document_uploaded_file", "#{Rails.root}/public/unix-programming.pdf"
+	 	click_button "Upload"
+	 	expect(current_path).to eq browse_path(folder)
+	 	expect(page).to have_content "unix-programming"
 	end
 
 
