@@ -29,8 +29,23 @@ feature 'User viewing his library' do
 		log_in user
 		visit library_path(library)
 		expect(current_path).to eq library_path(library)
-		expect(page).to have_content folder.name
+		expect(page).to have_link folder.name , href: browse_path(folder.id)
 	end
+
+	scenario "can browse into folder" do
+        new_document = create(:document, :uploaded_file_file_name => "newdocument")
+        folder.documents << new_document
+		library.folders << folder
+		log_in user
+		visit library_path(library)
+		click_link folder.name
+		expect(current_path).to eq browse_path(folder.id)
+		expect(page).to have_content new_document.file_name
+		visit library_path(library)
+		expect(page).not_to have_content new_document.file_name
+	end
+
+
 
 	
 end

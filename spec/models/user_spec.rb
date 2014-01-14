@@ -92,5 +92,6 @@ describe User do
      it "provides associated folders via library" do
         expect(user).to have_many(:folders).through(:library)
      end
+ 
   end
 end

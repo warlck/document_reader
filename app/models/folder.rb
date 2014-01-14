@@ -4,7 +4,7 @@ class Folder < ActiveRecord::Base
   attr_accessible :name, :parent_id
   
   belongs_to :library
-  has_many :documents
+  has_many :documents, dependent: :destroy
 
   validates :name, presence: true
 
