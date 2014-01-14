@@ -22,6 +22,5 @@ feature 'User viewing his library' do
 		expect(page).to have_link "New document"
 	end
 
-
 	
 end

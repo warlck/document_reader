@@ -17,6 +17,14 @@ class DocumentsController < ApplicationController
 	end
 
 
+
+	def destroy
+		document = current_user.documents.find(params[:id])
+		document.destroy if document
+		redirect_to library_path(current_user.library)
+	end
+
+
 	def get
 		document = current_user.documents.find_by_id(params[:id])
 		if document 
@@ -26,4 +34,5 @@ class DocumentsController < ApplicationController
 		    redirect_to root_url
 		end
 	end
+
 end

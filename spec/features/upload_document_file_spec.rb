@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'User creating document by uploading pdf' do
-	let(:user) { create(:user)}
+	let(:user) { create(:user)}	
 	 scenario 'is successful when  valid file is used' do
 	 	log_in user
 	 	visit new_document_path 
