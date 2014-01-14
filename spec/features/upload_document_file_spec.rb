@@ -29,7 +29,7 @@ feature 'User creating document by uploading pdf' do
 	 	expect(page.response_headers['Content-Type']).to eq 'application/pdf'
 	 end
 
-	 scenario "is unsuccessfull when no file is chosen" do
+	 scenario "is unsuccessfull when no file is chosen", :slow do
          click_button "Upload"
          expect(page).to have_content "Upload Document"
          expect(page).to have_content "Uploaded file can't be blank"
