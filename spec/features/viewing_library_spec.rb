@@ -57,7 +57,7 @@ feature 'User viewing his library' do
 		expect(current_path).to eq browse_path(folder)
 	end
 
-	scenario "can create file inside a folder" do
+	scenario "can create file inside a folder", :slow do
 		log_in user
 		visit browse_path(folder)
 		click_link "Upload"
