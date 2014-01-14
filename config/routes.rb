@@ -6,6 +6,7 @@ DocumentReader::Application.routes.draw do
  get 'logout',  to:'sessions#destroy', as: 'logout'
  get 'documents/get/:id', to: "documents#get", as: 'download' 
  get 'browse/:folder_id', to: "libraries#browse", as: "browse"
+ get 'browse/:folder_id/new_folder', to: "folders#new", as: "new_sub_folder"
  
  resources :users, only: [:new, :create]
  resources :sessions, only: [:new, :create, :destroy]
