@@ -10,6 +10,7 @@ gem 'high_voltage'
 gem 'paperclip'
 gem 'aws-sdk'
 gem "bootstrap-sass"
+gem "acts_as_tree"
 
 
 
