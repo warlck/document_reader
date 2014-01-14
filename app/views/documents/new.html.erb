@@ -1,6 +1,8 @@
-<h2>Upload Document</h2>
-<%= form_for @document, :html => {:multipart => true} do |f| %> 
-   <% if @document.errors.any? %>
+<h2 class="new_document_header">Upload Document</h2>
+
+
+ <%= form_for @document, :html => {:multipart => true} ,  class: "form-horizontal",  role: 'form' do  |f| %>
+  <% if @document.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
       <ul>
@@ -10,9 +12,14 @@
       </ul>
     </div>
     <% end %>
-    <p> 
-        <%= f.label :uploaded_file, "File" %><br /> 
-        <%= f.file_field :uploaded_file %> 
-    </p> 
-  <p><%= f.submit "Upload" %></p> 
-<% end %> 
+    <div class="field form-group">
+      <div class="col-sm-4">
+        <%= f.file_field :uploaded_file, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="actions form-group">
+      <div class="col-sm-10 ">
+        <%= f.submit "Upload", class: 'btn btn-default'%>
+      </div>
+    </div>
+<% end %>

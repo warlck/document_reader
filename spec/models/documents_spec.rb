@@ -25,6 +25,13 @@ describe Document do
      end
   end
 
+  describe "#file_size" do
+     it "returns the correct file size of attachment" do
+         document = create(:document, :uploaded_file_file_size => 10000)
+         expect(document.file_size).to eq 10000
+     end
+  end
+
   
 
 

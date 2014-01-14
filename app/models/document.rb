@@ -8,9 +8,14 @@ class Document < ActiveRecord::Base
   :content_type => { :content_type => "application/pdf" },
   :size => { :in => 0..10.megabytes }
 
-
+  
+  default_scope { order('uploaded_file_file_name DESC') }
 
   def file_name
   	 self.uploaded_file_file_name
+  end
+
+  def file_size
+    self.uploaded_file_file_size
   end
 end

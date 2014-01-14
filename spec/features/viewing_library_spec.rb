@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User viewing his library' do
 	let(:user) {create(:user)}
-	let(:document) { create(:document)}
+	let(:document) { create(:document, uploaded_file_file_size: 1024)}
     let(:library ) { user.library }
 	before(:each) { library.documents << document}
 
@@ -18,8 +18,10 @@ feature 'User viewing his library' do
 		visit library_path(library)
 		expect(current_path).to eq library_path(library)
 		expect(page).to have_content document.file_name
-		expect(page).to have_link 'Download', href: download_path(document.id)
-		expect(page).to have_link "New document"
+		expect(page).to have_css '.file_size', text: '1 KB'
+		expect(page).to have_link "Upload", href: new_document_path
+
+
 	end
 
 	

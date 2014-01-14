@@ -1,5 +1,5 @@
 DocumentReader::Application.routes.draw do
- root to: 'high_voltage/pages#show', id: 'homepage'
+ root to: 'reader#show'
 
  get 'signup' , to:'users#new', as: 'signup'
  get 'login',   to:'sessions#new', as: 'login' 
@@ -11,5 +11,6 @@ DocumentReader::Application.routes.draw do
  resources :password_resets, only: [:new, :create, :edit, :update]
  resources :documents, only: [:new, :create, :destroy]
  resources :libraries, only: [:show]
+ resource  :reader, only: [:show]
 end
 	

@@ -23,7 +23,7 @@ feature 'User creating document by uploading pdf' do
 	 	attach_file "File", "#{Rails.root}/public/unix-programming.pdf"
 	 	click_button "Upload"
 	 	expect(current_path).to eq library_path user.library
-	 	expect(page).to have_css 'tr.document'
+	 	expect(page).to have_css '.document'
 	 	expect(page).to have_content "unix-programming"
 	 	click_link 'Download'
 	 	expect(page.response_headers['Content-Type']).to eq 'application/pdf'
