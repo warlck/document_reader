@@ -1,7 +1,7 @@
-<h2 class="new_document_header">Upload Document</h2>
+<h2 class= 'new_document_header'>Upload Document</h2>
 
 
- <%= form_for @document, :html => {:multipart => true} ,  class: "form-horizontal",  role: 'form' do  |f| %>
+ <%= form_for @document, :html => {:multipart => true} ,  class: "form-horizontal", role: 'form' do  |f| %>
   <% if @document.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="actions form-group">
-      <div class="col-sm-10 ">
+      <div class="col-sm-offset-2 col-sm-10 ">
         <%= f.submit "Upload", class: 'btn btn-default'%>
       </div>
     </div>
