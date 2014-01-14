@@ -13,12 +13,12 @@ feature 'User creating document by uploading pdf' do
 	      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
 	      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
 	    }}) 
+		log_in user
+	 	visit new_document_path 
 	end
 	after(:all) { Paperclip::Attachment.default_options = @default_options }
 
-	 scenario 'is successful when  valid file is used' do
-	 	log_in user
-	 	visit new_document_path 
+	 scenario 'is successful when  valid file is used', :slow do 	
 	 	expect(page).to have_content "Upload Document"
 	 	attach_file "document_uploaded_file", "#{Rails.root}/public/unix-programming.pdf"
 	 	click_button "Upload"
@@ -28,6 +28,14 @@ feature 'User creating document by uploading pdf' do
 	 	click_link 'unix-programming.pdf'
 	 	expect(page.response_headers['Content-Type']).to eq 'application/pdf'
 	 end
+
+	 scenario "is unsuccessfull when no file is chosen" do
+         click_button "Upload"
+         expect(page).to have_content "Upload Document"
+         expect(page).to have_content "Uploaded file can't be blank"
+	 end
+
+
 
 	
 end

@@ -11,6 +11,8 @@ DocumentReader::Application.routes.draw do
  resources :password_resets, only: [:new, :create, :edit, :update]
  resources :documents, only: [:new, :create, :destroy]
  resources :libraries, only: [:show]
+ resources :folders, only: [:new, :create]
  resource  :reader, only: [:show]
+
 end
 	

@@ -1,7 +1,10 @@
 class Folder < ActiveRecord::Base
-  belongs_to :library
+  acts_as_tree
   attr_accessible :name, :parent_id
-
+  
+  belongs_to :library
   has_many :documents
+
+  validates :name, presence: true
 
 end
