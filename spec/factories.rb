@@ -11,4 +11,8 @@ FactoryGirl.define do
 		uploaded_file_content_type "application/pdf"
 		uploaded_file_file_size "140000"
 	end
+
+	factory :folder do
+		name 'Documents'
+	end
 end

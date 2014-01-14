@@ -67,3 +67,41 @@
     background:#DFF1FF; 
     border:1px solid #AFDDFF; 
 } 
+
+.file_name {
+    a {
+        position:relative;
+        top: 1px;
+    }
+}
+
+
+.folder  { 
+    background:url("../images/folder.png") no-repeat scroll left center transparent; 
+    background-size: 18px 18px;
+
+} 
+  
+.document { 
+    background:url("../images/edit.png") no-repeat scroll left center transparent; 
+    background-size: 18px 18px;
+} 
+.folder.document_details:hover, .shared_folder.document_details:hover, .file.document_details:hover  { 
+    border:1px solid #DFDFDF; 
+} 
+.folder.document_details:hover  { 
+    background:url("../images/folder.png") no-repeat scroll left center #EFEFEF; 
+    background-size: 18px 18px;
+} 
+.shared_folder  { 
+    background:url("../images/shared_folder.png") no-repeat scroll left center transparent; 
+    background-size: 18px 18px;
+} 
+.shared_folder.document_details:hover  { 
+    background:url("../images/shared_folder.png") no-repeat scroll left center #EFEFEF; 
+    background-size: 18px 18px;
+} 
+.document.document_details:hover  { 
+    background:url("../images/edit.png") no-repeat scroll left center #EFEFEF; 
+    background-size: 18px 18px;
+} 

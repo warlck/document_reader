@@ -3,8 +3,8 @@ require 'spec_helper'
 feature 'User viewing his library' do
 	let(:user) {create(:user)}
 	let(:document) { create(:document, uploaded_file_file_size: 1024)}
+	let(:folder) { create(:folder, name: "Documents")}
     let(:library ) { user.library }
-	before(:each) { library.documents << document}
 
 
 	scenario 'is redirected to login page if not signed in' do
@@ -14,6 +14,7 @@ feature 'User viewing his library' do
 	end
 
 	scenario 'can see documents listed' do	
+		library.documents << document
 		log_in user
 		visit library_path(library)
 		expect(current_path).to eq library_path(library)
@@ -21,7 +22,14 @@ feature 'User viewing his library' do
 		expect(page).to have_css '.file_size', text: '1 KB'
 		expect(page).to have_link "Upload", href: new_document_path
 
+	end
 
+	scenario 'can see folders listed' do	
+		library.folders << folder
+		log_in user
+		visit library_path(library)
+		expect(current_path).to eq library_path(library)
+		expect(page).to have_content folder.name
 	end
 
 	
