@@ -81,17 +81,59 @@ describe User do
   end
 
   describe "documents association" do
-     let(:user) { create(:user) }
+     let(:user) { build_stubbed(:user) }
      it "provides associated documents via library" do
         expect(user).to have_many(:documents).through(:library)
      end
   end
 
   describe "folders association" do
-     let(:user) { create(:user)}
+     let(:user) { build_stubbed(:user)}
      it "provides associated folders via library" do
         expect(user).to have_many(:folders).through(:library)
      end
- 
   end
+
+  describe "guest user" do
+    let(:user) { create(:user)  }
+     it "has guest attribute" do
+        expect(user).to respond_to :guest
+     end
+
+     it "have move_to method defined" do
+        expect(user).to respond_to :move_to
+     end
+
+     it "expects and argument" do
+        expect{user.move_to}.to raise_error
+     end
+
+     it "moves library of current to user to argument user" do
+       new_user = create(:user, email: "new@user.com")
+       user.move_to new_user
+       expect(new_user.reload.library).to eq user.library
+     end
+
+     it "deletes the record it is called on" do
+        new_user = create(:user, email: "new@user.com")
+        user.move_to new_user
+        expect(User.find_by_id(user.id)).to be_nil
+     end
+  end
+
+  describe "#new_guest" do
+     it "is defined" do
+        expect(User).to respond_to :new_guest
+     end
+
+     it "creates new user" do
+       expect{User.new_guest}.to change(User, :count).by(1)
+     end
+
+     it "creates valid guest user" do
+        guest = User.new_guest
+        expect(guest).to be_valid
+     end
+  end
+
 end

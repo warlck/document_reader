@@ -2,8 +2,12 @@ class LibrariesController <  ApplicationController
 	before_filter :authenticate_user!
 	def show
 	   lib = current_user.library
-	   @documents = lib.documents.where(folder_id: nil)
-	   @folders = lib.folders.roots
+	   if lib == Library.find(params[:id])
+		   @documents = lib.documents.where(folder_id: nil)
+		   @folders = lib.folders.roots
+		else
+			redirect_to library_path(lib.id)
+		end
 	end
 
 	def browse 

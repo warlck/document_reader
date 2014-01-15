@@ -8,10 +8,10 @@ feature 'User viewing his library' do
     before(:each) { library.folders << folder }
 
 
-	scenario 'is redirected to login page if not signed in' do
+	scenario 'sees Guest accounts library when not logged in' do
 		visit library_path(library)
-		expect(current_path).to eq login_path
-		expect(page).to have_content 'You are not '
+		expect(current_path).not_to eq library_path(library)
+		expect(page).to have_content "Guest"
 	end
 
 	scenario 'can see documents listed and corresponding actions' do	
@@ -43,7 +43,7 @@ feature 'User viewing his library' do
 		fill_in "Name", with: "Articles"
 		click_button "Create Folder"
 		expect(page).to have_link "Articles"
-		expect(current_path).to eq library_path(library)
+		expect(current_path).to eq root_path
 	end
 
 	scenario "can browse into folder" do
@@ -92,7 +92,7 @@ feature 'User viewing his library' do
 		expect(page).to have_content "Rename"
 		fill_in "Name", with: "Articles"
 		click_button "Rename Folder"
-		expect(current_path).to eq library_path library
+		expect(current_path).to eq root_path
 		expect(page).to have_link "Articles"
 	end
 

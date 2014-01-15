@@ -5,11 +5,7 @@ class SessionsController < ApplicationController
 	def create
 		@user = User.find_by_email(params[:email])
 		if @user && @user.authenticate(params[:password])
-			if params[:remember_me]
-				cookies.permanent[:auth_token] = @user.auth_token
-			else
-				cookies[:auth_token] = @user.auth_token
-			end
+			login @user, params[:remember_me]
 			redirect_to root_path
 			#debugger
 		else
@@ -23,4 +19,7 @@ class SessionsController < ApplicationController
 		cookies.delete(:auth_token)
 		redirect_to root_path
 	end
+
+	
 end
+

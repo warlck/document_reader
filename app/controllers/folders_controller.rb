@@ -48,7 +48,7 @@ class FoldersController < ApplicationController
 	  	   if folder.parent
 				redirect_to browse_path(folder.parent)
 		   else 
-				redirect_to library_path(current_user.library)
+				redirect_to root_path
 		   end
 	  end
 end

@@ -2,9 +2,10 @@ require 'spec_helper'
 
 feature "User creating folder"  do
     let(:user) {create(:user)}
-	scenario "is redirected to home page if user is logged in" do
+	scenario "can access new folder path when not logged in" do
 		visit new_folder_path
-		expect(current_path).to eq login_path
+		expect(current_path).to eq new_folder_path
+		expect(page).to have_content "New Folder"
 	end
 
 	scenario "succesfully creates folder when logged in" do

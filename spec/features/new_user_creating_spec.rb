@@ -4,13 +4,9 @@ feature	"Creating new user" do
 	before(:each) { visit signup_path}
    scenario 'successfully given valid attributes' do
    	  expect(page).to have_content 'New User Registration'
-   	  fill_in "Name", with: "Foo"
-   	  fill_in "Email", with: "foo@bar.com"
-   	  fill_in "Password", with: "foobar"
-   	  fill_in "Password confirmation", with: "foobar"
-   	  click_button 'Submit'
-   	  expect(page).to have_content 'Successfully registered'
-
+   	  sign_up
+   	  expect(page).to have_link "Foo"
+   	  expect(current_path).to eq root_path
    end
 
    scenario "unsuccessfully  given invalid password confirmation" do
