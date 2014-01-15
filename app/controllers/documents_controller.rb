@@ -11,11 +11,7 @@ class DocumentsController < ApplicationController
 	def create
 		@document = current_user.library.documents.new(params[:document])
 		if @document.save
-			if @document.folder
-				redirect_to browse_path(@document.folder)
-			else
-				redirect_to library_path current_user.library
-			end
+			redirect_to_folder @document
 		else
 			render :new
 		end
@@ -24,9 +20,10 @@ class DocumentsController < ApplicationController
 
 
 	def destroy
-		document = current_user.documents.find(params[:id])
-		document.destroy if document
-		redirect_to library_path(current_user.library)
+		@document = current_user.documents.find(params[:id])
+		@parent_folder = @document.folder
+		@document.destroy if @document
+		redirect_to_folder @document
 	end
 
 
@@ -40,5 +37,16 @@ class DocumentsController < ApplicationController
 		    redirect_to root_url
 		end
 	end
+
+
+
+	private 
+	  def redirect_to_folder document
+	  	if document.folder
+			redirect_to browse_path(document.folder)
+		else
+			redirect_to library_path current_user.library
+		end
+	  end
 
 end

@@ -25,10 +25,4 @@
     </div>
 <% end %>
 
-<p> 
-<% if @document.folder %> 
-   <%= link_to "Back to '#{@document.folder.name}' Folder", browse_path(@document.folder) %> 
-<% else %> 
-   <%= link_to "Back", root_url %> 
-<% end %> 
-</p> 
+<%= render "back" %>

@@ -35,6 +35,17 @@ feature 'User viewing his library' do
 		expect(page).to have_link "Delete", href: folder_path(folder)
 	end
 
+	scenario 'can create new folder' do
+		log_in user
+		visit library_path(library)
+		expect(page).to have_link "New Folder", href: new_folder_path
+		click_link "New Folder"
+		fill_in "Name", with: "Articles"
+		click_button "Create Folder"
+		expect(page).to have_link "Articles"
+		expect(current_path).to eq library_path(library)
+	end
+
 	scenario "can browse into folder" do
         new_document = create(:document, :uploaded_file_file_name => "newdocument")
         folder.documents << new_document
@@ -83,7 +94,6 @@ feature 'User viewing his library' do
 		click_button "Rename Folder"
 		expect(current_path).to eq library_path library
 		expect(page).to have_link "Articles"
-
 	end
 
 

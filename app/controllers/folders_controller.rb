@@ -34,6 +34,14 @@ class FoldersController < ApplicationController
 	end
 
 
+	def destroy
+		@folder = current_user.folders.find(params[:id])
+		@parent_folder = @folder.parent
+		@folder.destroy if @folder
+		redirect_to_parent @folder
+	end
+
+
 
 	private 
 	  def redirect_to_parent folder

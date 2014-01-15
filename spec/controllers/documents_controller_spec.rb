@@ -21,6 +21,4 @@ describe DocumentsController do
 		end
 	end
 
-
-	
 end
