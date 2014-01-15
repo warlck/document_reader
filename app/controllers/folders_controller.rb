@@ -12,13 +12,36 @@ class FoldersController < ApplicationController
 	def create
 		@folder  = current_user.library.folders.new(params[:folder])
         if @folder.save
-        	if @folder.parent
-        		redirect_to browse_path(@folder.parent)
-        	else
-				redirect_to root_url
-			end
+        	redirect_to_parent @folder
 		else
 			render :new
 		end
 	end
+
+	def edit
+		@folder = current_user.folders.find(params[:folder_id])
+		@current_folder = @folder.parent
+	end
+
+	def update
+		@folder = current_user.library.folders.find(params[:id])
+		@folder.update_attributes(params[:folder])
+		if @folder.save
+			redirect_to_parent @folder
+		else 
+			render :edit
+		end
+	end
+
+
+
+	private 
+	  def redirect_to_parent folder
+	  	   if folder.parent
+				redirect_to browse_path(folder.parent)
+		   else 
+				redirect_to library_path(current_user.library)
+		   end
+	  end
 end
+

@@ -16,16 +16,16 @@ feature 'User creating document by uploading pdf' do
 		log_in user
 	 	visit new_document_path 
 	end
-	after(:all) { Paperclip::Attachment.default_options = @default_options }
+	after(:all) { Paperclip::Attachment.default_options.merge!(@default_options) }
 
-	 scenario 'is successful when  valid file is used', :slow do 	
+	 scenario 'is successful when  valid file is used', :slow  do 	
 	 	expect(page).to have_content "Upload Document"
 	 	attach_file "document_uploaded_file", "#{Rails.root}/public/unix-programming.pdf"
 	 	click_button "Upload"
 	 	expect(current_path).to eq library_path user.library
 	 	expect(page).to have_css '.document'
-	 	expect(page).to have_content "unix-programming"
-	 	click_link 'unix-programming.pdf'
+	 	expect(page).to have_link "Download"
+	 	click_link 'Download'
 	 	expect(page.response_headers['Content-Type']).to eq 'application/pdf'
 	 end
 

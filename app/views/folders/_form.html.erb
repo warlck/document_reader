@@ -13,13 +13,13 @@
     <%= f.label :name %><br /> 
     <%= f.text_field :name %> 
  </p> 
-  <%= f.hidden_field :parent_id %> 
- <p><%= f.submit "Create Folder" %></p> 
- <p> 
-  <% if @folder.parent %> 
-     <%= link_to "Back to '#{@folder.parent.name}' Folder", browse_path(@folder.parent) %> 
-  <% else %> 
-     <%= link_to "Back to Home page", root_url %> 
-  <% end %> 
-</p> 
+  <%= f.hidden_field :parent_id %>
+  <% if @folder.new_record? %> 
+     <p><%= f.submit "Create Folder" %></p> 
+  <% else %>
+      <p><%= f.submit "Rename Folder" %></p>
+  <% end %>
+
 <% end %> 
+
+ <%= render "back" %>

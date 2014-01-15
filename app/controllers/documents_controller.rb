@@ -14,7 +14,7 @@ class DocumentsController < ApplicationController
 			if @document.folder
 				redirect_to browse_path(@document.folder)
 			else
-				redirect_to root_url
+				redirect_to library_path current_user.library
 			end
 		else
 			render :new

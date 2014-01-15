@@ -14,7 +14,7 @@ feature 'User viewing his library' do
 		expect(page).to have_content 'You are not '
 	end
 
-	scenario 'can see documents listed' do	
+	scenario 'can see documents listed and corresponding actions' do	
 		library.documents << document
 		log_in user
 		visit library_path(library)
@@ -22,6 +22,8 @@ feature 'User viewing his library' do
 		expect(page).to have_content document.file_name
 		expect(page).to have_css '.file_size', text: '1 KB'
 		expect(page).to have_link "Upload", href: new_document_path
+		expect(page).to have_link "Download", href: download_path(document)
+		expect(page).to have_link "Delete", href: document_path(document)
 	end
 
 	scenario 'can see folders listed' do	
@@ -29,6 +31,8 @@ feature 'User viewing his library' do
 		visit library_path(library)
 		expect(current_path).to eq library_path(library)
 		expect(page).to have_link folder.name , href: browse_path(folder.id)
+		expect(page).to have_link "Rename", href: rename_folder_path(folder)
+		expect(page).to have_link "Delete", href: folder_path(folder)
 	end
 
 	scenario "can browse into folder" do
@@ -69,9 +73,18 @@ feature 'User viewing his library' do
 	end
 
 
+	scenario "can rename the folder"  do 
+		log_in user
+		visit library_path library
+		click_link "Rename"
+		expect(current_path).to eq rename_folder_path(folder)
+		expect(page).to have_content "Rename"
+		fill_in "Name", with: "Articles"
+		click_button "Rename Folder"
+		expect(current_path).to eq library_path library
+		expect(page).to have_link "Articles"
+
+	end
 
 
-
-
-	
 end
