@@ -27,11 +27,20 @@
     var donwChevron = $('<span class="glyphicon glyphicon-chevron-down"></span>');
 
   	 $(document).on('click',".lift-up", function() {
-  	 	$this = $(this);
-  	 	console.log($this);
+  	 	var $this = $(this);
   	 	$("#container").slideUp();
-  	 	$('.lift-up').removeClass('.lift-down');
+  	 	$this.removeClass('lift-up').addClass('lift-down');
+  	 	$this.text("");
+  	 	donwChevron.clone().appendTo($this);       
 
+  	 });
+
+  	 $(document).on('click',".lift-down", function() {
+  	 	var $this = $(this);
+  	 	$("#container").slideDown();
+  	 	$this.removeClass('lift-down').addClass('lift-up');
+  	 	$this.text("");
+  	 	upChevron.clone().appendTo($this);       
   	 });
   })
 
