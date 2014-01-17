@@ -44,3 +44,21 @@ body {
 .document_list{
   position: relative;
 }
+
+#myTab li {
+  position: relative;
+}
+
+.times {
+  position: absolute;
+  right: 4px;
+  top: 13px;
+  height: 1em;
+  width: 1em;
+  text-align: center;
+  line-height: 1em;
+  &:hover {
+    background-color: #444;
+    color: #FFF;
+  }
+}
