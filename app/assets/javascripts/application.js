@@ -18,7 +18,7 @@
 
   var tabsShowing = false;
   var tabsCount = 0;
-  var tabN = 0;
+
 
 
   $(function() {
@@ -42,6 +42,24 @@
   	 	$this.empty();
   	 	upChevron.clone().appendTo($this);       
   	 });
+
+
+
+
+  	 $(document).on("click", '.times', function() {
+          var $this = $(this);
+          var href = $this.parent().attr("href");
+          $this.closest('li').remove();
+          $(href).remove();
+          tabsCount -= 1;
+          if (tabsCount == 0) {
+              $('#tabs').remove();
+              tabsShowing = false;
+              $('#container').show();
+              $('.document_list').height("100%").perfectScrollbar('destroy');
+
+          }
+      });
   })
 
   
