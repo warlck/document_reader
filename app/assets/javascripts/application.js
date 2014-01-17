@@ -30,7 +30,7 @@
   	 	var $this = $(this);
   	 	$("#container").slideUp();
   	 	$this.removeClass('lift-up').addClass('lift-down');
-  	 	$this.text("");
+  	 	$this.empty();
   	 	donwChevron.clone().appendTo($this);       
 
   	 });
@@ -39,7 +39,7 @@
   	 	var $this = $(this);
   	 	$("#container").slideDown();
   	 	$this.removeClass('lift-down').addClass('lift-up');
-  	 	$this.text("");
+  	 	$this.empty();
   	 	upChevron.clone().appendTo($this);       
   	 });
   })

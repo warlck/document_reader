@@ -1,8 +1,14 @@
+
+$(function() {
+
+ $('.document_list').width(750).height(50).perfectScrollbar();
+
  if (tabsShowing !== true) {
 	var content = $("<%= j render 'panel' %>");
 	$('body').append(content);
 	tabsShowing = true;
 	tabsCount += 1;
+	tabN += 1;
  } 
  else {
     $('.active').removeClass('active');
@@ -12,4 +18,10 @@
     $('div.tab-content').append(new_div);
     $('a.embed').gdocsViewer({width: 800});
     tabsCount += 1;
+    tabN +=1;
 }
+
+
+});
+
+
