@@ -13,3 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap
+
+
+  var tabsShowing = false;
+  var tabsCount = 0;
+  var tabN = 0;
+
+
+  $(function() {
+
+    var upChevron = $('<span class="glyphicon glyphicon-chevron-up"></span>');
+    var donwChevron = $('<span class="glyphicon glyphicon-chevron-down"></span>');
+
+  	 $(document).on('click',".lift-up", function() {
+  	 	$this = $(this);
+  	 	console.log($this);
+  	 	$("#container").slideUp();
+  	 	$('.lift-up').removeClass('.lift-down');
+
+  	 });
+  })
+
+  

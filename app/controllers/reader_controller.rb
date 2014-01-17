@@ -4,4 +4,8 @@ class ReaderController < ApplicationController
 		@documents = lib.documents.where(folder_id: nil)
 		@folders = lib.folders.roots
 	end
+
+	def read
+		@document = current_user.documents.find(params[:id])
+	end
 end

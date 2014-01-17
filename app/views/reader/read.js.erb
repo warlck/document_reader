@@ -1,0 +1,15 @@
+ if (tabsShowing !== true) {
+	var content = $("<%= j render 'panel' %>");
+	$('body').append(content);
+	tabsShowing = true;
+	tabsCount += 1;
+ } 
+ else {
+    $('.active').removeClass('active');
+    var new_tab = $('<li class="active"><a href="#profile" data-toggle="tab">New Tab <span class="times">&times;</span> </a></li>');
+    var new_div = $('<div class="tab-pane active" id="profile"><%= link_to "", "http://media.pragprog.com/titles/ruby3/app_socket.pdf", class: "embed"  %>"</div>');
+    $('ul.nav').append(new_tab);
+    $('div.tab-content').append(new_div);
+    $('a.embed').gdocsViewer({width: 800});
+    tabsCount += 1;
+}

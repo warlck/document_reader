@@ -3,7 +3,8 @@ class Document < ActiveRecord::Base
   belongs_to :library
   belongs_to :folder
 
-  has_attached_file :uploaded_file
+  has_attached_file :uploaded_file, 
+                    :path => "assets/:id/:basename.:extension"
   validates_attachment :uploaded_file, :presence => true,
   :content_type => { :content_type => "application/pdf" },
   :size => { :in => 0..10.megabytes }

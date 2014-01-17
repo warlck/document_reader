@@ -34,8 +34,3 @@ def create_folder name
 	click_button "Create Folder"
 end
 
-def upload_file
-	click_link "Upload"
-    attach_file "document_uploaded_file", "#{Rails.root}/public/unix-programming.pdf"
-	click_button "Upload"
-end

@@ -20,7 +20,7 @@
 <div class="document_list">
    <% @folders.each do |folder| %> 
         <div class="document_details folder"> 
-            <div class="file_name"><%= link_to folder.name, browse_path(folder.id) %></div> 
+            <div class="file_name"><%= link_to folder.name, browse_path(folder.id)  %></div> 
             <div class="file_size"> - </div> 
             <div class="file_last_updated"> - </div>
             <div class="actions">
@@ -35,7 +35,7 @@
     <% end %> 
    <% @documents.each do |document| %> 
        <div class="document_details document"> 
-           <div class="file_name"><%= link_to document.file_name, "#" %></div> 
+           <div class="file_name"><%= link_to document.file_name, read_path(document), remote: true %></div> 
            <div class="file_size"><%= number_to_human_size(document.file_size, precision: 2 ) %></div> 
            <div class="file_last_updated"><%= document.uploaded_file_updated_at %></div> 
            <div class="actions">

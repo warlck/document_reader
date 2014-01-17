@@ -9,7 +9,9 @@ DocumentReader::Application.routes.draw do
  get 'browse/:folder_id/new_folder', to: "folders#new", as: "new_sub_folder"
  get 'browse/:folder_id/new_file', to: "documents#new", as: "new_sub_file"
  get 'browse/:folder_id/rename', to: "folders#edit", as: "rename_folder"
- 
+ get 'read/:id', to: "reader#read", as: "read"
+
+
  resources :users, only: [:new, :create]
  resources :sessions, only: [:new, :create, :destroy]
  resources :password_resets, only: [:new, :create, :edit, :update]
