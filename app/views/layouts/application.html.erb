@@ -17,14 +17,14 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%=link_to "DOCBOX", root_url, class: 'navbar-brand'  %>
+    <%=link_to "DOCBOX", root_url, class: 'navbar-brand', remote: true  %>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
       <% if !current_user.guest? %>
-        <li><%= link_to current_user.name %></li>
+        <li><%= link_to current_user.name, library_path(current_user.library), remote: true %></li>
         <li><%= link_to "Logout", logout_path %></li>
       <% else %>
         <li><%= link_to "Guest", library_path(current_user.library) %></li>

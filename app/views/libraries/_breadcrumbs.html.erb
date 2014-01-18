@@ -1,8 +1,8 @@
 <div class="breadcrumbs">
 	<% if @current_folder %>
-	  <%= link_to "DOCBOX", root_url %>
+	  <%= link_to "DOCBOX", root_url, remote: true %>
 	  <% @current_folder.ancestors.reverse.each do  |folder|%>
-	    » <%= link_to folder.name, browse_path(folder) %>
+	    » <%= link_to folder.name, browse_path(folder), remote: true %>
 	  <% end %>
 	    » <%= @current_folder.name %>
 	<% else %>

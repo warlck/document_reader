@@ -1,5 +1,5 @@
 DocumentReader::Application.routes.draw do
- root to: 'reader#show'
+ root to: 'readers#show'
 
  get 'signup' , to:'users#new', as: 'signup'
  get 'login',   to:'sessions#new', as: 'login' 
@@ -9,7 +9,7 @@ DocumentReader::Application.routes.draw do
  get 'browse/:folder_id/new_folder', to: "folders#new", as: "new_sub_folder"
  get 'browse/:folder_id/new_file', to: "documents#new", as: "new_sub_file"
  get 'browse/:folder_id/rename', to: "folders#edit", as: "rename_folder"
- get 'read/:id', to: "reader#read", as: "read"
+ get 'read/:id', to: "readers#read", as: "read"
 
 
  resources :users, only: [:new, :create]
@@ -18,7 +18,7 @@ DocumentReader::Application.routes.draw do
  resources :documents, only: [:new, :create, :destroy]
  resources :libraries, only: [:show]
  resources :folders, only: [:new, :create, :show, :edit, :update, :destroy]
- resource  :reader, only: [:show]
+ resource  :readers, only: [:show]
 
 end
 	

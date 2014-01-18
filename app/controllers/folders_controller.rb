@@ -45,11 +45,15 @@ class FoldersController < ApplicationController
 
 	private 
 	  def redirect_to_parent folder
+	  	respond_to do |format|
 	  	   if folder.parent
-				redirect_to browse_path(folder.parent)
+	  	   	format.html { redirect_to browse_path(folder.parent)}
+	  	   	format.js   { render 'browse'}
 		   else 
-				redirect_to root_path
+			format.html { redirect_to root_path }
+	  	   	format.js   { render 'root'}
 		   end
+		end
 	  end
 end
 

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap
+//= require jquery.remotipart
 
 
   var tabsShowing = false;

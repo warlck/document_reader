@@ -15,6 +15,7 @@ class DocumentsController < ApplicationController
 		else
 			render :new
 		end
+    
 	end
 
 
@@ -42,10 +43,14 @@ class DocumentsController < ApplicationController
 
 	private 
 	  def redirect_to_folder document
-	  	if document.folder
-			redirect_to browse_path(document.folder)
-		else
-			redirect_to library_path current_user.library
+	  	respond_to do |format|
+		  	if document.folder
+		  		format.html { redirect_to browse_path(document.folder) }
+                format.js   { render 'browse' }
+			else
+				format.html { redirect_to  library_path current_user.library }
+                format.js   { render 'library' }
+			end
 		end
 	  end
 

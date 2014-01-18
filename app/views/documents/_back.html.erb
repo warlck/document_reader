@@ -1,7 +1,7 @@
 <p> 
 <% if @document.folder %> 
-   <%= link_to "Back to '#{@document.folder.name}' Folder", browse_path(@document.folder) %> 
+   <%= link_to "Back to '#{@document.folder.name}' Folder", browse_path(@document.folder), remote: true %> 
 <% else %> 
-   <%= link_to "Back", root_url %> 
+   <%= link_to "Back", root_url, remote: true %> 
 <% end %> 
 </p> 
