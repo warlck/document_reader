@@ -3,7 +3,7 @@ class Folder < ActiveRecord::Base
 
   attr_accessible :name, :parent_id
   
-  belongs_to :library
+  belongs_to :library, touch: true
   has_many :documents, dependent: :destroy
 
   validates :name, presence: true

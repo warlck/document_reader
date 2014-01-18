@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base
   attr_accessible :uploaded_file, :folder_id
-  belongs_to :library
-  belongs_to :folder
+  belongs_to :library, touch: true
+  belongs_to :folder, touch: true
 
   has_attached_file :uploaded_file, 
                     :path => "assets/:id/:basename.:extension"
