@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 	def new
-		expires_in 24.hours
+		
 	end
 
 	def create
